@@ -1,0 +1,59 @@
+<mat-card class="p-2 mt-3">
+  <mat-card-title>
+    <ng-container *ngIf="!isEditTask; else control">
+      {{ todo.title }}
+    </ng-container>
+  </mat-card-title>
+  <mat-card-content>
+    <p class="mt-2">
+      Task is
+      <ng-container
+        *ngTemplateOutlet="completeInfo; context: { todo }"
+      ></ng-container>
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="d-flex align-items-end">
+    <button mat-button (click)="toggleComplete()">
+      Set as
+      <ng-container
+        *ngTemplateOutlet="completeInfo; context: { todo }"
+      ></ng-container>
+    </button>
+    <button *ngIf="!isEditTask" mat-button color="primary" (click)="editTask()">
+      Edit task
+    </button>
+    <button
+      *ngIf="isEditTask"
+      mat-button
+      color="primary"
+      (click)="submitEdit()"
+    >
+      Submit
+    </button>
+    <button
+      *ngIf="isEditTask"
+      mat-button
+      color="primary"
+      (click)="cancelEdit()"
+    >
+      Cancel
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template let-todo="todo" #completeInfo>
+  {{ todo.completed ? "incomplete" : "complete" }}
+</ng-template>
+
+<ng-template #control>
+  <ng-container *ngIf="!(loadingTask$ | async); else loading">
+    <mat-form-field>
+      <mat-label>title</mat-label>
+      <input matInput placeholder="Placeholder" [formControl]="titleControl" />
+    </mat-form-field>
+  </ng-container>
+</ng-template>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

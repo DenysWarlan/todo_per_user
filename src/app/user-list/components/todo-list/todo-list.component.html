@@ -1,0 +1,22 @@
+<div class="d-flex align-items-center justify-content-end w-100 my-2 mr-5">
+  <button mat-button color="primary" (click)="goBackToList()">
+    Back to user list
+  </button>
+  <button mat-button color="primary" (click)="goBackToUserDetails()">
+    Back to user details
+  </button>
+  <button mat-button color="primary" (click)="onAddTodo()">Add task</button>
+</div>
+
+<ng-container *ngIf="loaded$ | async">
+  <ng-container *ngIf="todos$ | async as todos">
+    <div class="row">
+      <ng-container *ngFor="let todo of todos">
+        <app-todo [todo]="todo"></app-todo>
+      </ng-container>
+      <ng-container *ngIf="isAddTask">
+        <app-todo [todo]="newTask" [isEditTask]="true"></app-todo>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,18 @@
+<ng-container *ngIf="loaded$ | async">
+  <ng-container *ngIf="albums$ | async as albums">
+    <div class="row">
+      <ng-container *ngFor="let album of albums">
+        <mat-card class="card mt-3">
+          <mat-card-title>
+            {{ album.title }}
+          </mat-card-title>
+          <mat-card-actions class="d-flex align-items-end">
+            <button mat-button color="primary" (click)="goToPhoto(album.id)">
+              Show photo
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>

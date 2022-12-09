@@ -1,0 +1,70 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <ng-container *ngIf="!!user; else create">
+    <div
+      class="d-flex align-items-center justify-content-center fs-3 mt-2 w-100"
+    >
+      Edit user data
+    </div>
+  </ng-container>
+  <div class="form">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="form.controls.name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>User Name</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="form.controls.username"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="form.controls.email"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="form.controls.phone"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-around w-100">
+      <button mat-raised-button color="accent" (click)="onClose()">
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #create>
+  <div class="d-flex align-items-center justify-content-center fs-3 mt-2 w-100">
+    Create new user
+  </div></ng-template
+>
