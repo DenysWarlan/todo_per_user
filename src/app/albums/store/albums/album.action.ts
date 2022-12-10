@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Album } from '../../models/album';
-import {Photo} from "../../models/photo";
+import { Photo } from '../../models/photo';
 
 export class GetAlbums {
   public static readonly type: string = '[Albums] Get albums';

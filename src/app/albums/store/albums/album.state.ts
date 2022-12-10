@@ -47,6 +47,7 @@ export class AlbumState {
     dispatch,
     patchState,
   }: StateContext<AlbumStateModel>): Observable<void | Observable<void>> {
+    console.log('test');
     patchState({
       loading: true,
     });

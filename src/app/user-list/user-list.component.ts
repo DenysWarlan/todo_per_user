@@ -17,6 +17,7 @@ import { AddNewUser, EditUser } from './store/users/user.actions';
 export class UserListComponent {
   public users$: Observable<User[]> = this.store.select(UserState.users);
   public loading$: Observable<boolean> = this.store.select(UserState.loading);
+  public loaded$: Observable<boolean> = this.store.select(UserState.loaded);
   private sizeDialog: { width: string; height: string } = {
     height: '500px',
     width: '400px',

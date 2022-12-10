@@ -18,10 +18,6 @@ export class AlbumListComponent {
 
   constructor(private store: Store, private router: Router) {}
 
-  public goBackToList(): void {
-    this.router.navigate(['albums']);
-  }
-
   public goToPhoto(id: number): void {
     this.router.navigate([`album/${id}`]);
   }
