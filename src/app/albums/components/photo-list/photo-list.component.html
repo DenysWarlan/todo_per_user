@@ -1,0 +1,40 @@
+<div class="d-flex align-items-center justify-content-end w-100 my-2 mr-5">
+  <button mat-button color="primary" id="goBackToList" (click)="goBackToList()">
+    Back to albums list
+  </button>
+</div>
+
+<ng-container *ngIf="!(loading$ | async); else loading">
+  <ng-container *ngIf="photos$ | async as photos">
+    <ng-container *ngIf="(loaded$ | async) && !!photos.length; else noData">
+      <div class="row" id="cards">
+        <ng-container *ngFor="let photo of photos">
+          <mat-card class="card mt-3">
+            <mat-card-title>
+              {{ photo.title }}
+            </mat-card-title>
+            <mat-card-content>
+              <img
+                mat-card-image
+                [src]="photo.thumbnailUrl"
+                alt="Photo of a Shiba Inu"
+              />
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <div id="spinner" class="d-flex justify-content-center align-items-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <div id="noData" class="d-flex justify-content-center align-items-center">
+    No Data
+  </div>
+</ng-template>
