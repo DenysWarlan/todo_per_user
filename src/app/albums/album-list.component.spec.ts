@@ -5,34 +5,21 @@ import { MockModule, MockProvider } from 'ng-mocks';
 import { MaterialModule } from '../material.module';
 import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { AlbumState } from './store/albums/album.state';
-import { Photo } from './models/photo';
+import { AlbumState } from '@store/albums/album.state';
 import { Album } from './models/album';
+import { PARAM_MOCK, ROUTER_MOCK } from '@mocks/router.mock';
+import { ALBUMS_MOCK } from '@mocks/album.mock';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
   let storeMock: Store;
   let fixture: ComponentFixture<AlbumListComponent>;
-  let router = {
-    navigate: jasmine.createSpy('navigate'),
-  };
-  let paramMapMock = {
-    paramMap: of(
-      convertToParamMap({
-        id: '1',
-      })
-    ),
-  };
-  const mockAlbums: Album[] = [
-    {
-      id: 1,
-      title: 'accusamus beatae ad facilis cum similique qui sunt',
-      userId: 1,
-    },
-  ];
+  let router = ROUTER_MOCK;
+  let paramMapMock = PARAM_MOCK;
+  const mockAlbums: Album[] = ALBUMS_MOCK;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -67,7 +54,7 @@ describe('AlbumListComponent', () => {
       component.goToPhoto(1);
 
       expect(router.navigate).toHaveBeenCalledWith([`album/1`]);
-    })
+    });
   });
 
   describe('tests template', () => {
@@ -81,6 +68,7 @@ describe('AlbumListComponent', () => {
       spyOn(component, 'goToPhoto');
       const btn: HTMLButtonElement =
         fixture.nativeElement.querySelector('#showPhotoList');
+
       btn.click();
 
       expect(component.goToPhoto).toHaveBeenCalledWith(1);
@@ -89,7 +77,6 @@ describe('AlbumListComponent', () => {
     it('should album no data info, when loaded data and no data', () => {
       Object.defineProperty(AlbumState, 'albums', { value: [] });
       createComponent();
-
       const noData: DebugElement = fixture.debugElement.query(
         By.css('#noData')
       );
@@ -100,7 +87,6 @@ describe('AlbumListComponent', () => {
     it('should showed spinner, when loading data', () => {
       Object.defineProperty(AlbumState, 'loading', { value: true });
       createComponent();
-
       const spinner: DebugElement = fixture.debugElement.query(
         By.css('#spinner')
       );

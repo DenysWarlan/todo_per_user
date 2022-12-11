@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { GetAlbums } from './albums/store/albums/album.action';
-import { GetUsers } from './user-list/store/users/user.actions';
+import { GetAlbums } from '@store/albums/album.action';
+import { GetUsers } from '@store/users/user.actions';
 
 @Component({
   selector: 'app-root',

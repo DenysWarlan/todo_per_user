@@ -1,0 +1,28 @@
+<ng-container *ngIf="id$ | async as id">
+  <ng-container *ngIf="user$ | async as user">
+    <div class="details">
+      <mat-card class="card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ user.name }}</mat-card-title>
+          <mat-card-subtitle>{{ user.username }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <div class="my-3">
+            <p>E-mail: {{ user.email }}</p>
+            <p>Phone: {{ user.phone }}</p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="goBackToList()">Back to user list</button>
+          <button mat-button (click)="goToTaskList(id)">Tasks</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+</ng-container>

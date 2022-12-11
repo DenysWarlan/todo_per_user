@@ -1,33 +1,23 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
-import { AlbumState } from '@store/albums/album.state';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Photo } from '../../models/photo';
+import { User } from '../../models/user';
+import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
+import { UserState } from '@store/users/user.state';
 import { GetPhotos } from '@store/albums/album.action';
 
 @Component({
-  selector: 'app-photo-list',
-  templateUrl: './photo-list.component.html',
-  styleUrls: ['./photo-list.component.scss'],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhotoListComponent implements OnInit, OnDestroy {
-  public photos$: Observable<Photo[]> = this.store.select(AlbumState.photos);
-  public loading$: Observable<boolean> = this.store.select(
-    AlbumState.loadingPhoto
-  );
-  public loaded$: Observable<boolean> = this.store.select(
-    AlbumState.loadedPhoto
-  );
+export class UserComponent implements OnInit {
+  public user$: Observable<User | null> = this.store.select(UserState.user);
+  public id$!: Observable<string | null>;
 
-  private id$!: Observable<string | null>;
   private subGuard$: Subject<void> = new Subject<void>();
+
   constructor(
     private store: Store,
     private router: Router,
@@ -48,8 +38,12 @@ export class PhotoListComponent implements OnInit, OnDestroy {
     this.subGuard$.complete();
   }
 
-  public goBackToList(): void {
-    this.router.navigate(['albums']);
+  public goBackToList() {
+    this.router.navigate(['users']);
+  }
+
+  public goToTaskList(id: string) {
+    this.router.navigate([`user/${id}/tasks`]);
   }
 
   private handleId(): void {

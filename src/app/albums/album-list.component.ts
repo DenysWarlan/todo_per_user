@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AlbumState } from './store/albums/album.state';
+import { AlbumState } from '@store/albums/album.state';
 import { Album } from './models/album';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';

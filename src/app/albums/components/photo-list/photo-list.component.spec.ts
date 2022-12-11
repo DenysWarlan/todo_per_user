@@ -2,38 +2,24 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PhotoListComponent } from './photo-list.component';
 import { MockModule, MockProvider } from 'ng-mocks';
 import { Store } from '@ngxs/store';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
-import { GetPhotos } from '../../store/albums/album.action';
+import { GetPhotos } from '@store/albums/album.action';
 import { of } from 'rxjs';
-import { AlbumState } from '../../store/albums/album.state';
+import { AlbumState } from '@store/albums/album.state';
 import { Photo } from '../../models/photo';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { PARAM_MOCK, ROUTER_MOCK } from '@mocks/router.mock';
+import { PHOTOS_MOCK } from '@mocks/photo.mock';
 
 describe('PhotoListComponent', () => {
   let component: PhotoListComponent;
   let fixture: ComponentFixture<PhotoListComponent>;
   let storeMock: Store;
-  let router = {
-    navigate: jasmine.createSpy('navigate'),
-  };
-  let paramMapMock = {
-    paramMap: of(
-      convertToParamMap({
-        id: '1',
-      })
-    ),
-  };
-  const mockPhotos: Photo[] = [
-    {
-      albumId: 1,
-      id: 1,
-      title: 'accusamus beatae ad facilis cum similique qui sunt',
-      url: 'https://via.placeholder.com/600/92c952',
-      thumbnailUrl: 'https://via.placeholder.com/150/92c952',
-    },
-  ];
+  let router = ROUTER_MOCK;
+  let paramMapMock = PARAM_MOCK;
+  const mockPhotos: Photo[] = PHOTOS_MOCK;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,6 +37,7 @@ describe('PhotoListComponent', () => {
         { provide: Router, useValue: router },
       ],
     }).compileComponents();
+
     storeMock = TestBed.inject(Store);
     Object.defineProperty(AlbumState, 'photos', { value: mockPhotos });
     Object.defineProperty(AlbumState, 'loadingPhoto', { value: false });
@@ -74,6 +61,7 @@ describe('PhotoListComponent', () => {
 
     it('should back to list', () => {
       component.goBackToList();
+
       expect(router.navigate).toHaveBeenCalledWith(['albums']);
     });
   });

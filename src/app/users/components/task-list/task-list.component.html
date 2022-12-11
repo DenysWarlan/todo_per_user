@@ -1,0 +1,31 @@
+<ng-container *ngIf="id$ | async as id">
+  <div class="d-flex align-items-center justify-content-end w-100 my-2 mr-5">
+    <button mat-button color="primary" (click)="goBackToList()">
+      Back to user list
+    </button>
+
+    <button mat-button color="primary" (click)="goBackToUserDetails(id)">
+      Back to user details
+    </button>
+    <button mat-button color="primary" (click)="toggleAddTask()">
+      Add task
+    </button>
+  </div>
+
+  <ng-container *ngIf="loaded$ | async">
+    <ng-container *ngIf="tasks$ | async as tasks">
+      <div class="row align-items-end">
+        <ng-container *ngFor="let task of tasks">
+          <app-task [task]="task" [isEditTask]="false"></app-task>
+        </ng-container>
+        <ng-container *ngIf="isAddTask">
+          <app-task
+            [task]="newTask"
+            [isEditTask]="true"
+            (isCancelAddingNewTask)="cancelAddTask()"
+          ></app-task>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>
