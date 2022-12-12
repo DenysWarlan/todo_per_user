@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/xopero",
+    "public": "dist/lux_med",
     "ignore": [
       "firebase.json",
       "**/.*",

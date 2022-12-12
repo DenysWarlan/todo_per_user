@@ -7,13 +7,13 @@
   <mat-card-content>
     <p class="mt-2">
       Task is
-      {{ task?.completed ? "complete" : "incomplete" }}
+      {{ task.completed ? "complete" : "incomplete" }}
     </p>
   </mat-card-content>
   <mat-card-actions class="d-flex align-items-end">
     <button mat-button (click)="toggleComplete()">
       Set as
-      {{ task?.completed ? "incomplete" : "complete" }}
+      {{ task.completed ? "incomplete" : "complete" }}
     </button>
     <button *ngIf="!isEditTask" mat-button color="primary" (click)="editTask()">
       Edit task
