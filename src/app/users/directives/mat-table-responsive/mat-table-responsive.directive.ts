@@ -63,19 +63,15 @@ export class MatTableResponsiveDirective
       )
       .subscribe(
         ([columnNames, rows]: [string[], HTMLTableCellElement[][]]) => {
-          rows
-            .filter((cell: HTMLTableCellElement[]) => !!cell.length)
-            .forEach((rowCells: HTMLTableCellElement[]) =>
-              rowCells
-                .filter((cell: HTMLTableCellElement) => !!cell)
-                .forEach((cell: HTMLTableCellElement) => {
-                  this.renderer.setAttribute(
-                    cell,
-                    'data-column-name',
-                    columnNames[cell.cellIndex]
-                  );
-                })
-            );
+          rows.forEach((rowCells: HTMLTableCellElement[]) =>
+            rowCells.forEach((cell: HTMLTableCellElement) => {
+              this.renderer.setAttribute(
+                cell,
+                'data-column-name',
+                columnNames[cell.cellIndex]
+              );
+            })
+          );
         }
       );
   }

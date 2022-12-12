@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { MockModule, MockProvider } from 'ng-mocks';
 import { MaterialModule } from '@app/material.module';
 import { Store } from '@ngxs/store';
-import { GetAlbums } from '@store/albums/album.action';
 import { GetUsers } from '@store/users/user.actions';
 
 describe('AppComponent', () => {
@@ -48,9 +47,6 @@ describe('AppComponent', () => {
 
     component.ngOnInit();
 
-    expect(storeMock.dispatch).toHaveBeenCalledWith([
-      new GetAlbums(),
-      new GetUsers(),
-    ]);
+    expect(storeMock.dispatch).toHaveBeenCalledWith([new GetUsers()]);
   });
 });
