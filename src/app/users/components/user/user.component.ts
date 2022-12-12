@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { User } from '../../models/user';
 import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
 import { UserState } from '@store/users/user.state';
-import { GetPhotos } from '@store/albums/album.action';
+import { GetUserDetails } from '@store/users/user.actions';
 
 @Component({
   selector: 'app-user',
@@ -49,6 +49,6 @@ export class UserComponent implements OnInit {
   private handleId(): void {
     this.id$
       .pipe(filter(Boolean), takeUntil(this.subGuard$))
-      .subscribe((id) => this.store.dispatch(new GetPhotos(+id)));
+      .subscribe((id) => this.store.dispatch(new GetUserDetails(+id)));
   }
 }

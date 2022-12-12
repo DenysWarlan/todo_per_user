@@ -7,17 +7,13 @@
   <mat-card-content>
     <p class="mt-2">
       Task is
-      <ng-container
-        *ngTemplateOutlet="completeInfo; context: { task }"
-      ></ng-container>
+      {{ task?.completed ? "complete" : "incomplete" }}
     </p>
   </mat-card-content>
   <mat-card-actions class="d-flex align-items-end">
     <button mat-button (click)="toggleComplete()">
       Set as
-      <ng-container
-        *ngTemplateOutlet="completeInfo; context: { task }"
-      ></ng-container>
+      {{ task?.completed ? "incomplete" : "complete" }}
     </button>
     <button *ngIf="!isEditTask" mat-button color="primary" (click)="editTask()">
       Edit task
@@ -26,6 +22,7 @@
       *ngIf="isEditTask"
       mat-button
       color="primary"
+      [disabled]="titleControl.invalid"
       (click)="submitEdit()"
     >
       Submit
@@ -40,10 +37,6 @@
     </button>
   </mat-card-actions>
 </mat-card>
-
-<ng-template let-todo="todo" #completeInfo>
-  {{ todo?.completed ? "incomplete" : "complete" }}
-</ng-template>
 
 <ng-template #control>
   <ng-container *ngIf="!(loadingTask$ | async); else loading">

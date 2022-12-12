@@ -10,18 +10,18 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   public getTasks(id: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.url}/tasks?userId=${id}`);
+    return this.http.get<Task[]>(`${this.url}/todos?userId=${id}`);
   }
 
   public addNewTask(task: Task): Observable<Task> {
     return this.http
-      .post<ResponseNewTask>(`${this.url}/tasks`, { task })
+      .post<ResponseNewTask>(`${this.url}/todos`, { task })
       .pipe(map((res: ResponseNewTask) => ({ ...res.task, id: res.id })));
   }
 
   public editTask(task: Task): Observable<Task> {
     return this.http
-      .put<ResponseNewTask>(`${this.url}/tasks/${task.id}`, {
+      .put<ResponseNewTask>(`${this.url}/todos/${task.id}`, {
         task,
       })
       .pipe(map((res: ResponseNewTask) => ({ ...res.task, id: res.id })));

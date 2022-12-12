@@ -7,7 +7,7 @@ import { TaskListComponent } from '@app/users/components/task-list/task-list.com
 const routes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'user/:id', component: UserComponent },
-  { path: 'user/:id/Tasks', component: TaskListComponent },
+  { path: 'user/:id/tasks', component: TaskListComponent },
 ];
 
 @NgModule({

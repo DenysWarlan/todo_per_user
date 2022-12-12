@@ -1,10 +1,6 @@
-table {
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .mat-table[matTableResponsive] {
-    .mat-header-row {
+@media (max-width: 960px) {
+  .mat-mdc-table[matTableResponsive] {
+    .mat-mdc-header-row {
       display: flex;
       flex-wrap: wrap;
       height: auto;
@@ -12,29 +8,29 @@ table {
       top: 0;
       z-index: 2;
 
-      th.mat-header-cell {
+      th.mat-mdc-header-cell {
         display: flex;
         flex: 1;
         align-items: center;
         padding: 1rem 0.5rem;
         justify-content: space-around;
 
-        & > .mat-sort-header-container {
+        & > .mat-mdc-sort-header-container {
           padding-left: 15px; // padding is used to center the header table cells, due to the width of the sort icon
         }
 
-        &:not([mat-sort-header]),
-        &.mat-sort-header-disabled,
-        &.mat-column-actions {
+        &:not([mat-mdc-sort-header]),
+        &.mat-mdc-sort-header-disabled,
+        &.mat-mdc-column-actions {
           display: none;
         }
       }
     }
 
-    .mat-row {
+    .mat-mdc-row {
       height: auto;
 
-      td.mat-cell:not(.mat-column-actions) {
+      td.mat-mdc-cell:not(.mat-mdc-column-actions) {
         display: grid;
         grid-template-columns: 50% 50%;
         padding: 0.5rem;
@@ -51,7 +47,7 @@ table {
         }
       }
 
-      td.mat-column-actions {
+      td.mat-mdc-column-actions {
         display: flex;
         justify-content: center;
         padding: 0 0.5rem;
@@ -71,9 +67,9 @@ table {
     }
   }
 
-  .mat-card,
-  .mat-expansion-panel {
-    .mat-table[matTableResponsive] {
+  .mat-mdc-card,
+  .mat-mdc-expansion-panel {
+    .mat-mdc-table[matTableResponsive] {
       border: 0.5rem solid #fafafa;
     }
   }

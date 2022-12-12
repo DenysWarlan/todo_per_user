@@ -12,7 +12,6 @@ import { AddNewUser, EditUser } from '@store/users/user.actions';
   selector: 'app-users',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListComponent {
   public users$: Observable<User[]> = this.store.select(UserState.users);

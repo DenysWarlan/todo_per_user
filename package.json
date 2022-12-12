@@ -1,9 +1,9 @@
 {
-  "name": "xopero",
+  "name": "lux-med",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=8080",
+    "start": "ng serve --port=4040",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test  --code-coverage --watch=false"
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@ngxs/devtools-plugin": "^3.7.6",
     "@ngxs/logger-plugin": "^3.7.6-dev.master-2df2f65",
     "@ngxs/store": "^3.7.6",
     "bootstrap": "^5.2.3",

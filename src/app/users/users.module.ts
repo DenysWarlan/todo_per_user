@@ -11,6 +11,7 @@ import { TaskComponent } from './components/task/task.component';
 import { MaterialModule } from '../material.module';
 import { UserRoutingModule } from './user-routing.module';
 import { TaskListComponent } from '@app/users/components/task-list/task-list.component';
+import { MatTableResponsiveDirective } from '@app/users/directives/mat-table-responsive/mat-table-responsive.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TaskListComponent } from '@app/users/components/task-list/task-list.com
     TaskListComponent,
     FormUserComponent,
     TaskComponent,
+    MatTableResponsiveDirective,
   ],
   imports: [
     CommonModule,
